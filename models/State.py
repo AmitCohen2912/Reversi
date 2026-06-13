@@ -3,6 +3,7 @@ from dataclasses import dataclass
 EMPTY = '-'
 PLAYER1 = 'x'
 PLAYER2 = 'o'
+BOARD_SIZE = 8
 
 @dataclass
 class State:
@@ -11,7 +12,7 @@ class State:
 
     @staticmethod
     def initial_state() -> "State":
-        board = [[EMPTY for _ in range(8)] for _ in range(8)]
+        board = [[EMPTY for _ in range(BOARD_SIZE)] for _ in range(BOARD_SIZE)]
 
         board[3][3] = PLAYER1
         board[3][4] = PLAYER2
@@ -21,8 +22,8 @@ class State:
 
     def display(self):
         for row in self.board:
-            for i, col in enumerate(row):
-                if i == 7:
-                    print(col)
+            for i, value in enumerate(row):
+                if i == BOARD_SIZE - 1:
+                    print(value)
                 else:
-                    print(col, end=' ')
+                    print(value, end=' ')
